@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "awesome-pharma"
+  "cli": {
+    "analytics": false
+  }
 }
