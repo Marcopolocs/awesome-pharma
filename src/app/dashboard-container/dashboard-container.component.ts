@@ -10,6 +10,6 @@ export class DashboardContainerComponent implements OnInit {
   constructor(private dataProviderService: DataProviderService) {}
 
   ngOnInit(): void {
-    this.dataProviderService.accessDataFromXlsx();
+    this.dataProviderService.accessDataFromXlsx().subscribe();
   }
 }
