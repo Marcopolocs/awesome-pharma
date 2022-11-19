@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataCalculatorService } from '../services/data-calculator.service';
 import { DataProviderService } from '../services/data-provider.service';
 
 @Component({
@@ -7,9 +8,9 @@ import { DataProviderService } from '../services/data-provider.service';
   styleUrls: ['./dashboard-container.component.css'],
 })
 export class DashboardContainerComponent implements OnInit {
-  constructor(private dataProviderService: DataProviderService) {}
+  constructor(private dataCalculatorService: DataCalculatorService) {}
 
   ngOnInit(): void {
-    this.dataProviderService.accessDataFromXlsx().subscribe();
+    this.dataCalculatorService.dataProcess();
   }
 }

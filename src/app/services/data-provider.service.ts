@@ -1,7 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, retry, switchMap, take } from 'rxjs';
+import {
+  BehaviorSubject,
+  map,
+  Observable,
+  retry,
+  Subject,
+  switchMap,
+  take,
+} from 'rxjs';
 import * as XLSX from 'xlsx';
+import { Order, Product, SalesPerson } from '../shared/xlsx-data.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,36 +19,34 @@ export class DataProviderService {
   dataFile: string = 'assets/DW_Mini_case.xlsx';
   reader: FileReader = new FileReader();
 
-  // Original idea was to create a nested array which includes all the data I want and then work with that
-  // but instead I decided to create to every array their own interface and BehaviorSubject
-
-  salesPersonData$ = new BehaviorSubject<any>([]);
-  ordersData$ = new BehaviorSubject<any>([]);
-  productsData$ = new BehaviorSubject<any>([]);
+  salesPersonData$ = new Subject<SalesPerson[]>();
+  ordersData$ = new Subject<Order[]>();
+  productsData$ = new Subject<Product[]>();
 
   constructor(private http: HttpClient) {}
 
   accessDataFromXlsx() {
-    return (
-      this.http
-        .get(this.dataFile, { responseType: 'blob' })
-        // Check these operators later if they have any utility here
-        .pipe(
-          take(1),
-          retry(2),
-          switchMap((data) => {
-            return this.readXlsxData(data).pipe(
-              map((data) => {
-                this.salesPersonData$.next(
-                  this.transformSalesPersonData(data[0])
-                );
-                this.ordersData$.next(this.transformOrdersData(data[1]));
-                this.productsData$.next(this.transformProductsData(data[2]));
-              })
-            );
-          })
-        )
-    );
+    this.http
+      .get(this.dataFile, { responseType: 'blob' })
+      // Check these operators later if they have any utility here
+      .pipe(
+        take(1),
+        retry(2),
+        switchMap((data) => {
+          return this.readXlsxData(data).pipe(
+            map((data) => {
+              this.salesPersonData$.next(
+                this.transformSalesPersonData(data[0] || [])
+              );
+              this.ordersData$.next(this.transformOrdersData(data[1] || []));
+              this.productsData$.next(
+                this.transformProductsData(data[2] || [])
+              );
+            })
+          );
+        })
+      )
+      .subscribe();
   }
 
   readXlsxData(data: Blob): Observable<any> {
@@ -63,8 +70,8 @@ export class DataProviderService {
     });
   }
 
-  transformSalesPersonData(data: any): any {
-    const newSalesPersonArr = data.map((personObject: any) => {
+  transformSalesPersonData(data: any): SalesPerson[] {
+    const newSalesPersonArr: SalesPerson[] = data.map((personObject: any) => {
       return {
         personId: personObject.Id,
         personName: personObject.Name,
@@ -73,8 +80,8 @@ export class DataProviderService {
     return newSalesPersonArr;
   }
 
-  transformOrdersData(data: any): any {
-    const newOrdersArr = data.map((orderObject: any) => {
+  transformOrdersData(data: any): Order[] {
+    const newOrdersArr: Order[] = data.map((orderObject: any) => {
       return {
         customerAccountName: orderObject.Account,
         accountType: orderObject['Account type'],
@@ -87,8 +94,8 @@ export class DataProviderService {
     });
     return newOrdersArr;
   }
-  transformProductsData(data: any): any {
-    const newProductsArr = data.map((productObject: any) => {
+  transformProductsData(data: any): Product[] {
+    const newProductsArr: Product[] = data.map((productObject: any) => {
       return {
         productName: productObject['Product Name'],
         productId: productObject['Product Id'],
