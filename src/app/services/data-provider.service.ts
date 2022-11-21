@@ -1,14 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  map,
-  Observable,
-  retry,
-  Subject,
-  switchMap,
-  take,
-} from 'rxjs';
+import { map, Observable, Subject, switchMap } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { Order, Product, SalesPerson } from '../shared/xlsx-data.interface';
 
@@ -26,27 +18,19 @@ export class DataProviderService {
   constructor(private http: HttpClient) {}
 
   accessDataFromXlsx() {
-    this.http
-      .get(this.dataFile, { responseType: 'blob' })
-      // Check these operators later if they have any utility here
-      .pipe(
-        take(1),
-        retry(2),
-        switchMap((data) => {
-          return this.readXlsxData(data).pipe(
-            map((data) => {
-              this.salesPersonData$.next(
-                this.transformSalesPersonData(data[0] || [])
-              );
-              this.ordersData$.next(this.transformOrdersData(data[1] || []));
-              this.productsData$.next(
-                this.transformProductsData(data[2] || [])
-              );
-            })
-          );
-        })
-      )
-      .subscribe();
+    return this.http.get(this.dataFile, { responseType: 'blob' }).pipe(
+      switchMap((data) => {
+        return this.readXlsxData(data).pipe(
+          map((data) => {
+            this.salesPersonData$.next(
+              this.transformSalesPersonData(data[0] || [])
+            );
+            this.ordersData$.next(this.transformOrdersData(data[1] || []));
+            this.productsData$.next(this.transformProductsData(data[2] || []));
+          })
+        );
+      })
+    );
   }
 
   readXlsxData(data: Blob): Observable<any> {

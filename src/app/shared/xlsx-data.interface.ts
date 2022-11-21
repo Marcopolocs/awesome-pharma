@@ -21,3 +21,13 @@ export interface Order {
   productId: number;
   soldProductsNumber: number;
 }
+
+export interface MonthlySales {
+  month: number;
+  totalSalesInMonth: number;
+}
+
+export interface PurchasedNumberPerCustomer {
+  customerName: string;
+  numberOfPurchases: number;
+}
