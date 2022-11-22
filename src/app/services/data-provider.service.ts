@@ -78,6 +78,7 @@ export class DataProviderService {
     });
     return newOrdersArr;
   }
+
   transformProductsData(data: any): Product[] {
     const newProductsArr: Product[] = data.map((productObject: any) => {
       return {

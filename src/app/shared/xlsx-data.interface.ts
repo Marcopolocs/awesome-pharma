@@ -15,7 +15,7 @@ export interface Product {
 export interface Order {
   customerAccountName: string;
   accountType: string;
-  salesPersonId: number;
+  salesPersonId: string;
   orderStatus: string;
   orderDate: Date;
   productId: number;

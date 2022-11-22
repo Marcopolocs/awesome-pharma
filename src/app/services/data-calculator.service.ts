@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, map } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { FilterEnum } from '../shared/filter.enum';
 import {
   MonthlySales,
   Order,
@@ -15,7 +16,13 @@ import { DataProviderService } from './data-provider.service';
 export class DataCalculatorService {
   constructor(private dataProviderService: DataProviderService) {}
 
-  aggregateData() {
+  salesPersonDetails$ = new BehaviorSubject<SalesPerson[]>([]);
+  soldUnitsPerMonth$ = new BehaviorSubject<MonthlySales[]>([]);
+  purchasedNumbersByCustomer$ = new BehaviorSubject<
+    PurchasedNumberPerCustomer[]
+  >([]);
+
+  public aggregateData(): Observable<any> {
     this.dataProviderService.accessDataFromXlsx().subscribe();
     return combineLatest([
       this.dataProviderService.salesPersonData$,
@@ -23,38 +30,32 @@ export class DataCalculatorService {
       this.dataProviderService.productsData$,
     ]).pipe(
       map(([salesPersons, orders, products]) => {
-        console.log(
+        this.salesPersonDetails$.next(
           this.calcSalesPersonDetails(salesPersons, orders, products)
         );
-        console.log(this.calcSoldUnitsPerMonth(orders));
-        this.calcPurchasedProductsByCustomer(orders);
+        this.soldUnitsPerMonth$.next(this.calcSoldUnitsPerMonth(orders));
+        this.purchasedNumbersByCustomer$.next(
+          this.calcPurchasedNumbersByCustomer(orders)
+        );
       })
     );
   }
 
-  calcSalesPersonDetails(
+  private calcSalesPersonDetails(
     salesP: SalesPerson[],
     orders: Order[],
     products: Product[]
   ): SalesPerson[] {
     const personData = salesP.map((person: SalesPerson) => {
-      const salesPerPerson = orders.filter(
-        (order: any) => order.salesPersonId === person.personId
+      const ordersPerPerson = orders.filter(
+        (order: Order) => order.salesPersonId === person.personId
       );
 
-      const soldProductNumberPerPerson = salesPerPerson.reduce(
+      const soldProductNumberPerPerson = ordersPerPerson.reduce(
         (acc: number, cur: Order) => acc + cur.soldProductsNumber,
         0
       );
-
-      const totalRevenue = salesPerPerson
-        .map((sale: Order) => {
-          const product = products.find(
-            (prod: Product) => prod.productId === sale.productId
-          );
-          return product ? product.unitPrice * sale.soldProductsNumber : 0;
-        })
-        .reduce((acc: number, cur: number) => acc + cur, 0);
+      const totalRevenue = this.getTotalRevenue(ordersPerPerson, products);
 
       return {
         ...person,
@@ -62,10 +63,25 @@ export class DataCalculatorService {
         totalRevenue,
       };
     });
+    this.sortSalesPersonsByRevenue(personData);
     return personData;
   }
 
-  calcSoldUnitsPerMonth(orders: Order[]): MonthlySales[] {
+  private getTotalRevenue(
+    ordersPerPerson: Order[],
+    products: Product[]
+  ): number {
+    return ordersPerPerson
+      .map((order: Order) => {
+        const product = products.find(
+          (prod: Product) => prod.productId === order.productId
+        );
+        return product ? product.unitPrice * order.soldProductsNumber : 0;
+      })
+      .reduce((acc: number, cur: number) => acc + cur, 0);
+  }
+
+  private calcSoldUnitsPerMonth(orders: Order[]): MonthlySales[] {
     const months: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     const soldUnitsPerMonth: MonthlySales[] = months.map((month: number) => {
@@ -83,7 +99,7 @@ export class DataCalculatorService {
     return soldUnitsPerMonth;
   }
 
-  calcPurchasedProductsByCustomer(
+  private calcPurchasedNumbersByCustomer(
     orders: Order[]
   ): PurchasedNumberPerCustomer[] {
     const customerList: string[] = [];
@@ -92,17 +108,41 @@ export class DataCalculatorService {
       customerList.push(order.customerAccountName);
     });
 
-    const allCustomerPurchases: PurchasedNumberPerCustomer[] = customerList.map(
-      (custName: string) => {
-        const customerPurchases = orders
-          .filter((order: Order) => custName === order.customerAccountName)
-          .reduce((acc: number, cur: Order) => acc + cur.soldProductsNumber, 0);
-        return {
-          customerName: custName,
-          numberOfPurchases: customerPurchases,
-        };
-      }
+    return customerList.map((custName: string) => {
+      const customerPurchases = orders
+        .filter((order: Order) => custName === order.customerAccountName)
+        .reduce((acc: number, cur: Order) => acc + cur.soldProductsNumber, 0);
+      return {
+        customerName: custName,
+        numberOfPurchases: customerPurchases,
+      };
+    });
+  }
+
+  private sortSalesPersonsByRevenue(personList: SalesPerson[]): SalesPerson[] {
+    return personList.sort((a: any, b: any) => b.totalRevenue - a.totalRevenue);
+  }
+
+  private sortSalesPersonsByNumberOfItems(
+    personList: SalesPerson[]
+  ): SalesPerson[] {
+    return personList.sort(
+      (a: any, b: any) => b.totalItemsSold - a.totalItemsSold
     );
-    return allCustomerPurchases;
+  }
+
+  public sortSalesPersonsByCondition(filterName: string): void {
+    const salesPersonData = this.salesPersonDetails$.getValue();
+    if (filterName === FilterEnum.revenue) {
+      this.salesPersonDetails$.next(
+        this.sortSalesPersonsByRevenue(salesPersonData)
+      );
+    }
+
+    if (filterName === FilterEnum.numberOfItems) {
+      this.salesPersonDetails$.next(
+        this.sortSalesPersonsByNumberOfItems(salesPersonData)
+      );
+    }
   }
 }

@@ -4,11 +4,22 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
+import { DashboardContainerComponent } from './components/dashboard/dashboard-container.component';
+import { SalesPersonComponent } from './components/dashboard/sales-person/sales-person.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, DashboardContainerComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    DashboardContainerComponent,
+    SalesPersonComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

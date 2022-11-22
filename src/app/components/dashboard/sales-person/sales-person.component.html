@@ -1,0 +1,23 @@
+<div class="sort-container">
+  <p class="sort-text">Sort by:</p>
+  <form action="" [formGroup]="sortForm" (change)="onChangeSortCondition()">
+    <select name="condition" id="select" formControlName="sortCondition">
+      <option [value]="'revenue'">Revenue</option>
+      <option [value]="'numberOfItems'">Number of sold items</option>
+    </select>
+  </form>
+</div>
+<table>
+  <tr>
+    <th>Person ID</th>
+    <th>Name</th>
+    <th>
+      {{ sortByRevenue ? "Revenue" : "Number of Items Sold" }}
+    </th>
+  </tr>
+  <tr *ngFor="let salesP of salesPersonsDetails">
+    <td>{{ salesP.personId }}</td>
+    <td>{{ salesP.personName }}</td>
+    <td>{{ sortByRevenue ? salesP.totalRevenue : salesP.totalItemsSold }}</td>
+  </tr>
+</table>
