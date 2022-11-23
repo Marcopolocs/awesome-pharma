@@ -8,3 +8,9 @@
     ></app-sales-person>
   </ng-container>
 </section>
+<section>
+  <h1>Monthly sales</h1>
+  <ng-container *ngIf="unitsSoldPerMonth$ as soldUnits">
+    <app-monthly-sales [soldUnitsPerMonth]="soldUnits"></app-monthly-sales>
+  </ng-container>
+</section>

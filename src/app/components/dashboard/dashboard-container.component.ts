@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subscription } from 'rxjs';
-import { SalesPerson } from 'src/app/shared/xlsx-data.interface';
+import { MonthlySales, SalesPerson } from 'src/app/shared/xlsx-data.interface';
 import { DataCalculatorService } from '../../services/data-calculator.service';
 
 @Component({
@@ -10,6 +10,9 @@ import { DataCalculatorService } from '../../services/data-calculator.service';
 })
 export class DashboardContainerComponent implements OnInit, OnDestroy {
   subscribeToDataCalculation!: Subscription;
+
+  unitsSoldPerMonth$: Observable<MonthlySales[]> =
+    this.dataCalculatorService.soldUnitsPerMonth$;
 
   salesPersonDetails$: Observable<SalesPerson[]> =
     this.dataCalculatorService.salesPersonDetails$.pipe(
@@ -24,8 +27,8 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  setSortCondition(condition: string) {
-    this.dataCalculatorService.sortSalesPersonsByCondition(condition);
+  setSortCondition(sortCondition: string) {
+    this.dataCalculatorService.sortSalesPersonsByCondition(sortCondition);
   }
 
   ngOnDestroy(): void {
