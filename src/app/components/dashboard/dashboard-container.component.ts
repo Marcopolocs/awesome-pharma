@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subscription } from 'rxjs';
-import { MonthlySales, SalesPerson } from 'src/app/shared/xlsx-data.interface';
+import {
+  MonthlySales,
+  PurchasedNumberPerCustomer,
+  SalesPerson,
+} from 'src/app/shared/xlsx-data.interface';
 import { DataCalculatorService } from '../../services/data-calculator.service';
 
 @Component({
@@ -18,6 +22,9 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
     this.dataCalculatorService.salesPersonDetails$.pipe(
       map((list: SalesPerson[]) => list.slice(0, 3))
     );
+
+  customerMonthlyPurchases$: Observable<PurchasedNumberPerCustomer[]> =
+    this.dataCalculatorService.purchasedNumbersByCustomer$;
 
   constructor(private dataCalculatorService: DataCalculatorService) {}
 

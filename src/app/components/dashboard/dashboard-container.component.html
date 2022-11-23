@@ -14,3 +14,10 @@
     <app-monthly-sales [soldUnitsPerMonth]="soldUnits"></app-monthly-sales>
   </ng-container>
 </section>
+<section>
+  <ng-container *ngIf="customerMonthlyPurchases$ | async as purchases">
+    <app-customer-purchases
+      [customerPurchaseList]="purchases"
+    ></app-customer-purchases>
+  </ng-container>
+</section>

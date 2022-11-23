@@ -1,0 +1,12 @@
+<form role="search">
+  <label for="">Szeretem a meggyet</label>
+  <input
+    class="form-container"
+    type="search"
+    placeholder="Search crypto"
+    aria-label="Search"
+    #searchInputElement
+    [formControl]="searchInput"
+  />
+</form>
+<!-- (keydown.enter)="preventPageReloadOnEnter($event)" -->

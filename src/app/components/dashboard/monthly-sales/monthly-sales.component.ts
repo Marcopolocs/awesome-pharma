@@ -52,7 +52,7 @@ export class MonthlySalesComponent implements OnInit, AfterViewInit {
           labels: items.map((item: any) => item.month + 1),
           datasets: [
             {
-              label: 'Interesting Data',
+              label: 'Products sold per month',
               data: items.map((item: any) => item.totalSalesInMonth),
             },
           ],
