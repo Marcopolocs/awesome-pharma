@@ -11,6 +11,7 @@ export class SalesPersonComponent implements OnInit {
   @Input() salesPersonsDetails!: SalesPerson[];
   @Output() sortByCondition = new EventEmitter<string>();
 
+  displayedColumns: string[] = ['id', 'name', 'numberOfItems', 'revenue'];
   sortByRevenue: boolean = true;
   sortForm: FormGroup<any> = new FormGroup<any>({
     sortCondition: new FormControl<string>('revenue'),

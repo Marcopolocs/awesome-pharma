@@ -17,7 +17,7 @@ export class DataCalculatorService {
   constructor(private dataProviderService: DataProviderService) {}
 
   salesPersonDetails$ = new BehaviorSubject<SalesPerson[]>([]);
-  soldUnitsPerMonth$ = new BehaviorSubject<MonthlySales[]>([]);
+  soldUnitsPerMonth$ = new BehaviorSubject<any>([]);
   purchasedNumbersByCustomer$ = new BehaviorSubject<
     PurchasedNumberPerCustomer[]
   >([]);

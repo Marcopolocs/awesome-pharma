@@ -6,8 +6,6 @@ import {
   distinctUntilChanged,
   filter,
   map,
-  switchMap,
-  tap,
 } from 'rxjs';
 import { PurchasedNumberPerCustomer } from 'src/app/shared/xlsx-data.interface';
 
@@ -27,16 +25,15 @@ export class CustomerPurchasesComponent implements OnInit {
     map((result) => result)
   );
 
-  searchResults$ = this.searchTerms$
-    .pipe(
+  searchResults$: Observable<PurchasedNumberPerCustomer[]> =
+    this.searchTerms$.pipe(
       map((data: string) => {
         return this.customerPurchaseList.filter(
           (customer: PurchasedNumberPerCustomer) =>
             customer.customerName.toLowerCase().startsWith(data)
         );
       })
-    )
-    .subscribe();
+    );
 
   constructor() {}
 
