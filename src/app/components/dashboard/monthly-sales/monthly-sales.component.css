@@ -1,0 +1,23 @@
+.monthly-sales-container {
+  margin: 5rem 5rem;
+  display: inline-block;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px rgb(187, 187, 187);
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+  margin: 1.4rem 2rem 0.7rem 2rem;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+.canvas-container {
+  margin: 0 2rem 2rem;
+  width: 50rem;
+}

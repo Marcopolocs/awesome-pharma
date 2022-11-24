@@ -12,6 +12,16 @@ export class SalesPersonComponent implements OnInit {
   @Output() sortByCondition = new EventEmitter<string>();
 
   displayedColumns: string[] = ['id', 'name', 'numberOfItems', 'revenue'];
+  columnsToDisplay() {
+    return this.displayedColumns.filter((item) => {
+      if (this.sortByRevenue && item !== 'numberOfItems') return item;
+      else if (!this.sortByRevenue && item !== 'revenue') {
+        return item;
+      }
+      return;
+    });
+  }
+
   sortByRevenue: boolean = true;
   sortForm: FormGroup<any> = new FormGroup<any>({
     sortCondition: new FormControl<string>('revenue'),

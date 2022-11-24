@@ -1,0 +1,82 @@
+.sales-person-container {
+  margin: 5rem 5rem;
+  display: inline-block;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 2px 2px rgb(187, 187, 187);
+}
+
+.sales-person-details {
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+  margin: 1.4rem 2rem 0.7rem 2rem;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+.sort-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sort-text {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+select {
+  border-radius: 20px;
+  padding: 5px;
+  border: 1px solid rgb(8, 210, 172);
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+.table-container {
+  margin: 0 2rem 2rem;
+  width: 50rem;
+}
+
+mat-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+mat-header-row {
+  color: white;
+  background: linear-gradient(to bottom, rgb(51, 195, 229), rgb(8, 210, 172));
+}
+
+mat-table mat-row {
+  border-left: 1px solid rgb(8, 210, 172);
+  border-right: 1px solid rgb(8, 210, 172);
+  border-bottom: 1px solid rgb(8, 210, 172);
+}
+
+mat-table mat-row:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+mat-cell {
+  color: rgb(41, 41, 41);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+mat-header-cell {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+mat-header-cell:first-child {
+  width: 5rem;
+}

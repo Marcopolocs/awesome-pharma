@@ -1,12 +1,18 @@
-<form role="search">
-  <label for="">Szeretem a meggyet</label>
-  <input
-    class="form-container"
-    type="search"
-    placeholder="Search crypto"
-    aria-label="Search"
-    #searchInputElement
-    [formControl]="searchInput"
-  />
-</form>
+<section class="customer-purchase-container">
+  <div class="header-details">
+    <h1>Customer purchases</h1>
+
+    <form role="search">
+      <label for="">Search for a customer:</label>
+      <input
+        class="form-container"
+        type="search"
+        placeholder="Customer name"
+        aria-label="Search"
+        #searchInputElement
+        [formControl]="searchInput"
+      />
+    </form>
+  </div>
+</section>
 <!-- (keydown.enter)="preventPageReloadOnEnter($event)" -->

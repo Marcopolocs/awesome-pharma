@@ -1,23 +1,18 @@
-<section>
-  <h1>Top 3 salesperson</h1>
-  <h3></h3>
+<div class="dashboard-container">
   <ng-container *ngIf="salesPersonDetails$ | async as salesPersons">
     <app-sales-person
       [salesPersonsDetails]="salesPersons"
       (sortByCondition)="setSortCondition($event)"
     ></app-sales-person>
   </ng-container>
-</section>
-<section>
-  <h1>Monthly sales</h1>
+
   <ng-container *ngIf="unitsSoldPerMonth$ as soldUnits">
     <app-monthly-sales [soldUnitsPerMonth]="soldUnits"></app-monthly-sales>
   </ng-container>
-</section>
-<section>
+
   <ng-container *ngIf="customerMonthlyPurchases$ | async as purchases">
     <app-customer-purchases
       [customerPurchaseList]="purchases"
     ></app-customer-purchases>
   </ng-container>
-</section>
+</div>
