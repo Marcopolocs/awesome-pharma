@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { NgChartsModule } from 'ng2-charts';
 
@@ -22,6 +22,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     CommonModule,
     NgChartsModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     MatTableModule,
     DashboardRoutingModule,

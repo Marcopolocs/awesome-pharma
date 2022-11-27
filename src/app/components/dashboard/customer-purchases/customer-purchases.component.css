@@ -1,9 +1,8 @@
 .customer-purchase-container {
-  display: flex;
-  flex-direction: column;
+  max-width: unset;
   border-radius: 20px;
   background-color: white;
-  padding: 0.3rem 0.2rem;
+  padding: 0.3rem 1rem;
   box-shadow: 2px 2px rgb(187, 187, 187);
 }
 
@@ -31,14 +30,15 @@ label {
 }
 
 input {
+  width: 100%;
   border-radius: 20px;
   padding: 10px;
-  border: 1px solid rgb(8, 210, 172);
+  border: 1px solid var(--color-one);
 }
 
 input:focus {
   border: 1px solid transparent;
-  box-shadow: 0 0 3px 3px rgb(8, 210, 172, 0.8);
+  box-shadow: 0 0 3px 3px var(--color-one);
   outline: none;
 }
 
@@ -49,11 +49,12 @@ input:focus {
 }
 
 .highlighted-values {
-  color: rgb(8, 210, 172);
+  color: var(--color-one);
   font-weight: 600;
 }
 
 .customer-name {
+  display: flex;
   font-size: 1rem;
 }
 
@@ -67,5 +68,44 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 0;
+}
+
+.search-result-container {
+  background-color: white;
+  box-shadow: 0 0 10px 4px rgb(8, 210, 172, 0.5);
+  margin-top: 0.5rem;
+  position: absolute;
+  width: 13rem;
+  max-height: 12rem;
+  border-radius: 8px;
+  padding: 5px 5px;
+  overflow: auto;
+}
+
+.search-row {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 33px;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.search-row:hover {
+  border-radius: 5px;
+  background-color: #ddd;
+  font-weight: 500;
+}
+
+.search-content {
+  padding: 12px 0 0 10px;
+}
+
+h5 {
+  font-size: 0.9rem;
+}
+
+.hideSearchResults {
+  display: none;
 }

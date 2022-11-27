@@ -13,15 +13,38 @@
           (keydown.enter)="preventPageReloadOnEnter($event)"
         />
       </form>
+      <ng-container *ngIf="searchResults$ | async as searchResults">
+        <section
+          class="search-result-container"
+          [ngClass]="{ hideSearchResults: !isSearcResultWindowOpen }"
+        >
+          <div
+            class="search-row"
+            *ngFor="let searchItem of searchResults"
+            (click)="setCustomerDetails(searchItem)"
+          >
+            <p class="search-content">
+              {{ searchItem.customerName }}
+            </p>
+          </div>
+        </section>
+      </ng-container>
     </div>
   </div>
-
   <div class="customer-details">
-    <h4>Name:</h4>
-    <h4 class="highlighted-values customer-name">Dummy name</h4>
-    <h3>Number of purchased items:</h3>
+    <h5>Name:</h5>
+    <h4 class="highlighted-values customer-name">
+      {{
+        pickedCustomer
+          ? pickedCustomer.customerName
+          : "No customer selected yet"
+      }}
+    </h4>
+    <h5>Number of purchased items:</h5>
     <div class="number">
-      <h3 class="highlighted-values purchased-number">3456</h3>
+      <h3 class="highlighted-values purchased-number">
+        {{ pickedCustomer ? pickedCustomer.numberOfPurchases : "-" }}
+      </h3>
     </div>
   </div>
 </section>

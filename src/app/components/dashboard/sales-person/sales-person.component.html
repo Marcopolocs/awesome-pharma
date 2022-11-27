@@ -42,13 +42,13 @@
           >Revenue</mat-header-cell
         >
         <mat-cell *matCellDef="let row">
-          {{ row.totalRevenue }}
+          {{ "€ " + row.totalRevenue }}
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="numberOfItems">
         <mat-header-cell mat-header-cell *matHeaderCellDef
-          >Number of sold items</mat-header-cell
+          >Sale number</mat-header-cell
         >
         <mat-cell *matCellDef="let row">
           {{ row.totalItemsSold }}

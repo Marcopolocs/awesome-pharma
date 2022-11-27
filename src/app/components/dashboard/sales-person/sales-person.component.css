@@ -31,7 +31,7 @@ h1 {
 select {
   border-radius: 20px;
   padding: 5px;
-  border: 1px solid rgb(8, 210, 172);
+  border: 1px solid var(--color-one);
 }
 
 select:hover {
@@ -40,7 +40,7 @@ select:hover {
 
 select:focus {
   border: 1px solid transparent;
-  box-shadow: 0 0 3px 3px rgb(8, 210, 172, 0.8);
+  box-shadow: 0 0 3px 3px var(--color-one, 0.8);
   outline: none;
 }
 
@@ -57,7 +57,7 @@ mat-table {
 
 mat-header-row {
   color: white;
-  background: linear-gradient(to bottom, rgb(51, 195, 229), rgb(8, 210, 172));
+  background: linear-gradient(to bottom, var(--color-two), var(--color-one));
 }
 
 .mat-column-index {
@@ -65,13 +65,13 @@ mat-header-row {
 }
 
 .mat-column-personName {
-  flex: 0 0 40%;
+  flex: 0 0 32%;
 }
 
 mat-table mat-row {
-  border-left: 1px solid rgb(8, 210, 172);
-  border-right: 1px solid rgb(8, 210, 172);
-  border-bottom: 1px solid rgb(8, 210, 172);
+  border-left: 1px solid var(--color-one);
+  border-right: 1px solid var(--color-one);
+  border-bottom: 1px solid var(--color-one);
 }
 
 mat-table mat-row:hover {

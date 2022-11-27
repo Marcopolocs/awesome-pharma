@@ -63,6 +63,7 @@ export class DataCalculatorService {
         totalRevenue,
       };
     });
+
     this.sortSalesPersonsByRevenue(personData);
     return personData;
   }

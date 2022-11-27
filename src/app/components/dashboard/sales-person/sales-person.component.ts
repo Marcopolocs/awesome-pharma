@@ -18,15 +18,6 @@ export class SalesPersonComponent implements OnInit {
     'numberOfItems',
     'revenue',
   ];
-  columnsToDisplay() {
-    return this.displayedColumns.filter((item) => {
-      if (this.sortByRevenue && item !== 'numberOfItems') return item;
-      else if (!this.sortByRevenue && item !== 'revenue') {
-        return item;
-      }
-      return;
-    });
-  }
 
   sortByRevenue: boolean = true;
   sortForm: FormGroup<any> = new FormGroup<any>({
@@ -40,5 +31,15 @@ export class SalesPersonComponent implements OnInit {
   onChangeSortCondition() {
     this.sortByRevenue = !this.sortByRevenue;
     this.sortByCondition.emit(this.sortForm.controls['sortCondition'].value);
+  }
+
+  columnsToDisplay() {
+    return this.displayedColumns.filter((item) => {
+      if (this.sortByRevenue && item !== 'numberOfItems') return item;
+      else if (!this.sortByRevenue && item !== 'revenue') {
+        return item;
+      }
+      return;
+    });
   }
 }
