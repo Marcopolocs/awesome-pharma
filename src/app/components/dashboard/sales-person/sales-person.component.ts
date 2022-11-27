@@ -11,7 +11,13 @@ export class SalesPersonComponent implements OnInit {
   @Input() salesPersonsDetails!: SalesPerson[];
   @Output() sortByCondition = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['id', 'name', 'numberOfItems', 'revenue'];
+  displayedColumns: string[] = [
+    'index',
+    'personName',
+    'id',
+    'numberOfItems',
+    'revenue',
+  ];
   columnsToDisplay() {
     return this.displayedColumns.filter((item) => {
       if (this.sortByRevenue && item !== 'numberOfItems') return item;

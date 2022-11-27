@@ -1,18 +1,28 @@
-<div class="dashboard-container">
+<section class="dashboard-container">
+  <div class="title-container">
+    <h1>
+      Sales Report
+      <span>- 2018</span>
+    </h1>
+  </div>
   <ng-container *ngIf="salesPersonDetails$ | async as salesPersons">
     <app-sales-person
+      class="sales-person-container"
       [salesPersonsDetails]="salesPersons"
       (sortByCondition)="setSortCondition($event)"
     ></app-sales-person>
   </ng-container>
 
   <ng-container *ngIf="unitsSoldPerMonth$ as soldUnits">
-    <app-monthly-sales [soldUnitsPerMonth]="soldUnits"></app-monthly-sales>
+    <app-monthly-sales
+      [soldUnitsPerMonth]="soldUnits"
+      class="monthly-sales-container"
+    ></app-monthly-sales>
   </ng-container>
-
   <ng-container *ngIf="customerMonthlyPurchases$ | async as purchases">
     <app-customer-purchases
       [customerPurchaseList]="purchases"
+      class="customer-purchase-container"
     ></app-customer-purchases>
   </ng-container>
-</div>
+</section>

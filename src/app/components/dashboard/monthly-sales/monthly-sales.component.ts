@@ -49,11 +49,18 @@ export class MonthlySalesComponent implements OnInit, AfterViewInit {
       this.chart = new Chart(this.chartRef.nativeElement, {
         type: 'bar',
         data: {
-          labels: items.map((item: any) => item.month + 1),
+          labels: items.map(
+            (item: any) =>
+              item.month.charAt(0).toUpperCase() + item.month.substring(1)
+          ),
           datasets: [
             {
               label: 'Products sold per month',
               data: items.map((item: any) => item.totalSalesInMonth),
+              backgroundColor: [
+                'rgb(8, 210, 172, 0.7)',
+                'rgb(51, 195, 229, 0.7)',
+              ],
             },
           ],
         },

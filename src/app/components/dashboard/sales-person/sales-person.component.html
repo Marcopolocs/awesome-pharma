@@ -14,19 +14,26 @@
   </div>
   <div class="table-container">
     <mat-table [dataSource]="salesPersonsDetails">
-      <ng-container matColumnDef="id">
-        <mat-header-cell mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          {{ row.personId }}
+      <ng-container matColumnDef="index">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Top</mat-header-cell>
+        <mat-cell *matCellDef="let row; index as i">
+          {{ salesPersonsDetails.indexOf(row) + 1 + "." }}
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="personName">
         <mat-header-cell mat-header-cell *matHeaderCellDef
           >Name</mat-header-cell
         >
         <mat-cell *matCellDef="let row">
           {{ row.personName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.personId }}
         </mat-cell>
       </ng-container>
 

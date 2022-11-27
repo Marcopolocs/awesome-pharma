@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
-import { FilterEnum } from '../shared/filter.enum';
+import { FilterEnum, MonthsEnum } from '../shared/filter.enum';
 import {
   MonthlySales,
   Order,
@@ -80,19 +80,22 @@ export class DataCalculatorService {
       })
       .reduce((acc: number, cur: number) => acc + cur, 0);
   }
+  // Ezt még át kéne gondolni, bár sikerült display-elni a hónap neveket, de nem értem,
+  // hogy miért az Object.values kellett az Object.keys helyett.
+  private calcSoldUnitsPerMonth(orders: Order[]) {
+    const months: MonthsEnum[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-  private calcSoldUnitsPerMonth(orders: Order[]): MonthlySales[] {
-    const months: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-    const soldUnitsPerMonth: MonthlySales[] = months.map((month: number) => {
+    const soldUnitsPerMonth = months.map((month: number) => {
       const totalSalesInMonth = orders
         .filter((order: Order) => {
           if (order.orderDate.getFullYear() !== 2018) return;
           return order.orderDate.getMonth() === month;
         })
         .reduce((acc: number, cur: Order) => acc + cur.soldProductsNumber, 0);
+
+      const monthString = Object.values(MonthsEnum)[month];
       return {
-        month,
+        month: monthString,
         totalSalesInMonth,
       };
     });

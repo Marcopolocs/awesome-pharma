@@ -1,9 +1,8 @@
 .sales-person-container {
-  margin: 5rem 5rem;
-  display: inline-block;
   background-color: white;
   border-radius: 20px;
   box-shadow: 2px 2px rgb(187, 187, 187);
+  padding: 0.3rem 0.2rem;
 }
 
 .sales-person-details {
@@ -11,6 +10,7 @@
   justify-content: space-between;
   height: 2rem;
   margin: 1.4rem 2rem 0.7rem 2rem;
+  border-bottom: 1px solid #ddd;
 }
 
 h1 {
@@ -39,8 +39,7 @@ select:hover {
 }
 
 .table-container {
-  margin: 0 2rem 2rem;
-  width: 50rem;
+  padding: 0 2rem 2rem;
 }
 
 mat-table {
@@ -53,6 +52,14 @@ mat-table {
 mat-header-row {
   color: white;
   background: linear-gradient(to bottom, rgb(51, 195, 229), rgb(8, 210, 172));
+}
+
+.mat-column-index {
+  max-width: 14%;
+}
+
+.mat-column-personName {
+  flex: 0 0 40%;
 }
 
 mat-table mat-row {

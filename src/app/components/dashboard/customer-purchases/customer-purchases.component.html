@@ -1,11 +1,11 @@
 <section class="customer-purchase-container">
   <div class="header-details">
     <h1>Customer purchases</h1>
-
+  </div>
+  <div class="search-container">
     <form role="search">
-      <label for="">Search for a customer:</label>
+      <label>Search for:</label>
       <input
-        class="form-container"
         type="search"
         placeholder="Customer name"
         aria-label="Search"
@@ -14,5 +14,14 @@
       />
     </form>
   </div>
+  <div class="customer-details">
+    <h3>Name:</h3>
+    <h3 class="highlighted-values customer-name">Dummy name</h3>
+    <h3>Number of purchased items:</h3>
+    <div class="number">
+      <h3 class="highlighted-values purchased-number">3456</h3>
+    </div>
+  </div>
 </section>
+
 <!-- (keydown.enter)="preventPageReloadOnEnter($event)" -->
