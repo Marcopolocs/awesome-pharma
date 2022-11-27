@@ -1,9 +1,12 @@
 <section class="dashboard-container">
   <div class="title-container">
-    <h1>
-      Sales Report
-      <span>- 2018</span>
-    </h1>
+    <img [src]="image" alt="AwsomePharmaLogo" />
+    <div class="report-container">
+      <h1>
+        Sales Report
+        <span>2018</span>
+      </h1>
+    </div>
   </div>
   <ng-container *ngIf="salesPersonDetails$ | async as salesPersons">
     <app-sales-person

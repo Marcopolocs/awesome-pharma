@@ -13,6 +13,7 @@ import { DataCalculatorService } from '../../services/data-calculator.service';
   styleUrls: ['./dashboard-container.component.css'],
 })
 export class DashboardContainerComponent implements OnInit, OnDestroy {
+  image: string = './assets/awsome-logo.png';
   subscribeToDataCalculation!: Subscription;
 
   unitsSoldPerMonth$: Observable<MonthlySales[]> =
