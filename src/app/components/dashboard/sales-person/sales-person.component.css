@@ -38,6 +38,12 @@ select:hover {
   cursor: pointer;
 }
 
+select:focus {
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 3px rgb(8, 210, 172, 0.8);
+  outline: none;
+}
+
 .table-container {
   padding: 0 2rem 2rem;
 }

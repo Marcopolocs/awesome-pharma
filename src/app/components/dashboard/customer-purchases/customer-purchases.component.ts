@@ -38,4 +38,8 @@ export class CustomerPurchasesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  preventPageReloadOnEnter(e: Event) {
+    e.preventDefault();
+  }
 }

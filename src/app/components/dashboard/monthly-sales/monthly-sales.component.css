@@ -19,6 +19,9 @@ h1 {
 
 .canvas-container {
   display: flex;
-  min-width: 30em;
   padding: 0 2rem 2rem;
+}
+
+canvas {
+  max-height: 20rem;
 }
