@@ -1,5 +1,5 @@
-<section class="customer-purchase-container">
-  <div class="header-details">
+<section class="customer-container">
+  <div class="header-section">
     <h1>Customer purchases</h1>
     <div class="search-container">
       <form role="search">
@@ -27,11 +27,12 @@
               {{ searchItem.customerName }}
             </p>
           </div>
+          <p class="search-content" *ngIf="!searchResults.length">No results</p>
         </section>
       </ng-container>
     </div>
   </div>
-  <div class="customer-details">
+  <div class="customer-details-container">
     <h5>Name:</h5>
     <h4 class="highlighted-values customer-name">
       {{

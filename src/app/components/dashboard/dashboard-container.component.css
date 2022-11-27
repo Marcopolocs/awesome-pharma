@@ -27,10 +27,6 @@ img {
   grid-column: span 3;
 }
 
-.customer-purchase-container {
-  display: flex;
-}
-
 .report-container {
   display: flex;
   justify-content: center;
@@ -49,4 +45,46 @@ span {
   display: flex;
   justify-content: center;
   padding-top: 1.2rem;
+}
+
+@media (max-width: 1360px) {
+  .dashboard-container {
+    display: grid;
+    max-width: 65rem;
+  }
+
+  .sales-person-container {
+    grid-column: span 3;
+  }
+
+  .monthly-sales-container {
+    grid-column: span 3;
+  }
+
+  .customer-purchase-container {
+  }
+
+  .title-container {
+  }
+}
+
+@media (max-width: 1120px) {
+  .dashboard-container {
+    display: grid;
+    max-width: 50rem;
+  }
+
+  .sales-person-container {
+    max-height: 30rem;
+  }
+
+  .monthly-sales-container {
+    max-height: 30rem;
+  }
+
+  .customer-purchase-container {
+  }
+
+  .title-container {
+  }
 }

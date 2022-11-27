@@ -13,6 +13,7 @@ import {
   distinctUntilChanged,
   filter,
   map,
+  tap,
 } from 'rxjs';
 import { PurchasedNumberPerCustomer } from 'src/app/shared/xlsx-data.interface';
 
@@ -37,6 +38,12 @@ export class CustomerPurchasesComponent implements OnInit {
   }
 
   searchTerms$: Observable<string> = this.searchInput.valueChanges.pipe(
+    // side effect: close results window if user deleted all inputs
+    tap((data) =>
+      data === '' || data === null
+        ? (this.isSearcResultWindowOpen = false)
+        : data
+    ),
     debounceTime(200),
     distinctUntilChanged(),
     filter((input) => input !== '' && input !== null),
