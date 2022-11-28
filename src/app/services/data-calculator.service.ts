@@ -81,8 +81,7 @@ export class DataCalculatorService {
       })
       .reduce((acc: number, cur: number) => acc + cur, 0);
   }
-  // Ezt még át kéne gondolni, bár sikerült display-elni a hónap neveket, de nem értem,
-  // hogy miért az Object.values kellett az Object.keys helyett.
+
   private calcSoldUnitsPerMonth(orders: Order[]) {
     const months: MonthsEnum[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 

@@ -93,3 +93,57 @@ mat-header-cell {
 mat-header-cell:first-child {
   width: 5rem;
 }
+
+@media (max-width: 1380px) {
+  h1 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  h1 {
+    font-size: 1.1rem;
+  }
+  .table-container {
+    padding-bottom: 1rem;
+  }
+  .sales-person-details {
+    margin-top: 0.5rem;
+  }
+  mat-table {
+    max-height: 10rem;
+  }
+  mat-header-cell {
+    max-height: 0.5rem;
+    font-size: 1rem;
+  }
+  mat-header-row {
+    min-height: 2.8rem;
+  }
+  mat-row {
+    min-height: 2.5rem;
+  }
+  mat-cell {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 890px) {
+  .mat-column-personName {
+    flex: 0 0 40%;
+  }
+  .mat-column-index {
+    max-width: 12%;
+  }
+  mat-header-cell {
+    font-size: 0.8rem;
+  }
+  mat-cell {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .mat-column-personName {
+    flex: 0 0 45%;
+  }
+}

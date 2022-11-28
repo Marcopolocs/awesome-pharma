@@ -19,17 +19,17 @@ img {
   max-width: 90%;
 }
 
+.report-container {
+  display: flex;
+  justify-content: center;
+}
+
 .sales-person-container {
   grid-column: span 3;
 }
 
 .monthly-sales-container {
   grid-column: span 3;
-}
-
-.report-container {
-  display: flex;
-  justify-content: center;
 }
 
 h1 {
@@ -41,13 +41,7 @@ h1 {
   color: var(--color-one);
 }
 
-span {
-  display: flex;
-  justify-content: center;
-  padding-top: 1.2rem;
-}
-
-@media (max-width: 1360px) {
+@media (max-width: 1380px) {
   .dashboard-container {
     display: grid;
     max-width: 65rem;
@@ -55,36 +49,107 @@ span {
 
   .sales-person-container {
     grid-column: span 3;
+    max-height: 20rem;
   }
 
   .monthly-sales-container {
     grid-column: span 3;
   }
-
-  .customer-purchase-container {
-  }
-
-  .title-container {
+  h1 {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 1120px) {
   .dashboard-container {
-    display: grid;
     max-width: 50rem;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .title-container {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    grid-column: span 6;
+    max-height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    height: 4rem;
+    margin: 0;
+  }
+
+  .report-container {
+    flex-direction: row;
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--color-one);
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    padding: 0;
   }
 
   .sales-person-container {
-    max-height: 30rem;
+    max-height: 20rem;
+    grid-column: span 6;
   }
 
   .monthly-sales-container {
     max-height: 30rem;
+    grid-column: span 4;
   }
 
   .customer-purchase-container {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 890px) {
+  .dashboard-container {
+    margin: 1.5rem 0 2.5rem 0;
+    display: grid;
+    row-gap: 0.5rem;
+    width: 40rem;
   }
 
   .title-container {
+    padding: 0.5rem 2rem;
+  }
+
+  img {
+    height: 3.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .sales-person-container {
+    grid-column: span 6;
+  }
+
+  .monthly-sales-container {
+    grid-column: span 6;
+  }
+
+  .customer-purchase-container {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard-container {
+    width: 35rem;
   }
 }

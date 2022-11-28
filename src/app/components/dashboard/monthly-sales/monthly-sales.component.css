@@ -26,3 +26,52 @@ h1 {
 canvas {
   max-height: 20rem;
 }
+
+@media (max-width: 1380px) {
+  canvas {
+    max-height: 15rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  .canvas-container {
+    display: flex;
+    max-height: 17rem;
+    padding-bottom: 1rem;
+  }
+  canvas {
+    max-height: 15rem;
+  }
+
+  .header-section {
+    margin-top: 0.5rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 890px) {
+  .monthly-sales-container {
+    min-height: 90%;
+  }
+  .canvas-container {
+    display: flex;
+    max-height: 10rem;
+  }
+  canvas {
+    max-height: 10rem;
+  }
+  .canvas-container {
+    padding-bottom: 0.5rem;
+  }
+  .header-section {
+    margin-top: 0.5rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+}

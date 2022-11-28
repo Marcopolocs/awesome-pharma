@@ -11,11 +11,11 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 1.4rem 2rem 0.7rem 2rem;
-  border-bottom: 1px solid #ddd;
 }
 
 h1 {
   font-weight: 500;
+  border-bottom: 1px solid #ddd;
 }
 
 form {
@@ -64,7 +64,7 @@ input:focus {
   font-size: 2.5rem;
 }
 
-.number {
+.purchased-number-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,4 +108,82 @@ h5 {
 
 .hideSearchResults {
   display: none;
+}
+
+@media (max-width: 1380px) {
+  canvas {
+    max-height: 15rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+  h5 {
+    margin-bottom: 5px;
+  }
+  .customer-details-container {
+    margin: 0.5rem 2rem 0 2rem;
+  }
+
+  .customer-name {
+    display: flex;
+    font-size: 0.9rem;
+  }
+
+  .purchased-number {
+    font-size: 1.2rem;
+  }
+
+  .purchased-number-container {
+    padding: 0;
+  }
+
+  .search-result-container {
+    width: 12rem;
+    max-height: 12rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  .header-section {
+    margin-top: 0.5rem;
+  }
+  input {
+    padding: 7px 0 7px 10px;
+  }
+  .search-result-container {
+    max-height: 10rem;
+  }
+}
+
+@media (max-width: 890px) {
+  .header-section {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ddd;
+  }
+
+  h1 {
+    border: none;
+    margin-bottom: 0.3rem;
+  }
+  input {
+    width: 12rem;
+  }
+
+  label {
+    display: none;
+  }
+  .purchased-number-container {
+    display: flex;
+    justify-content: left;
+  }
+  .search-result-container {
+    max-height: 8rem;
+  }
+}
+
+@media (max-width: 720px) {
+  input {
+    width: 12rem;
+  }
 }

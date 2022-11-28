@@ -34,18 +34,18 @@
   </div>
   <div class="customer-details-container">
     <h5>Name:</h5>
-    <h4 class="highlighted-values customer-name">
+    <p class="highlighted-values customer-name">
       {{
         pickedCustomer
           ? pickedCustomer.customerName
           : "No customer selected yet"
       }}
-    </h4>
+    </p>
     <h5>Number of purchased items:</h5>
-    <div class="number">
-      <h3 class="highlighted-values purchased-number">
+    <div class="purchased-number-container">
+      <p class="highlighted-values purchased-number">
         {{ pickedCustomer ? pickedCustomer.numberOfPurchases : "-" }}
-      </h3>
+      </p>
     </div>
   </div>
 </section>
