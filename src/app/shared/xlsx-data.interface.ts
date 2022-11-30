@@ -1,10 +1,11 @@
-export interface SalesPerson {
+export interface BasePerson {
   personId: string;
   personName: string;
-  totalItemsSold?: number;
-  totalRevenue?: number;
 }
-
+export interface SalesPerson extends BasePerson {
+  totalItemsSold: number;
+  totalRevenue: number;
+}
 export interface Product {
   productName: string;
   productId: number;
@@ -23,7 +24,7 @@ export interface Order {
 }
 
 export interface MonthlySales {
-  month: number;
+  month: string | number;
   totalSalesInMonth: number;
 }
 
