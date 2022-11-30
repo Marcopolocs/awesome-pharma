@@ -90,6 +90,8 @@ input:focus {
   height: 33px;
   font-weight: 500;
   margin: 5px 0;
+  line-height: 12px;
+  border-bottom: 1px solid #ddd;
 }
 
 .search-row:hover {
@@ -114,9 +116,11 @@ h5 {
   canvas {
     max-height: 15rem;
   }
+
   h1 {
     font-size: 1.1rem;
   }
+
   h5 {
     margin-bottom: 5px;
   }
@@ -147,9 +151,11 @@ h5 {
   .header-section {
     margin-top: 0.5rem;
   }
+
   input {
     padding: 7px 0 7px 10px;
   }
+
   .search-result-container {
     max-height: 10rem;
   }
@@ -166,6 +172,7 @@ h5 {
     border: none;
     margin-bottom: 0.3rem;
   }
+
   input {
     width: 12rem;
   }
@@ -173,17 +180,75 @@ h5 {
   label {
     display: none;
   }
+
   .purchased-number-container {
     display: flex;
     justify-content: left;
   }
+
   .search-result-container {
-    max-height: 8rem;
+    max-height: 7rem;
   }
 }
 
 @media (max-width: 720px) {
   input {
     width: 12rem;
+  }
+}
+
+@media (max-width: 600px) {
+  input {
+    width: 9rem;
+    font-size: 0.7rem;
+  }
+
+  h1 {
+    font-size: 0.8rem;
+  }
+
+  .header-section {
+    margin: 0.5rem 1rem 0 1rem;
+  }
+
+  .customer-details-container {
+    margin: 0.5rem 1rem 0 1rem;
+  }
+
+  h5 {
+    font-size: 0.6rem;
+  }
+
+  .search-result-container {
+    max-width: 8rem;
+    max-height: 7rem;
+  }
+
+  .search-row {
+    margin: 0;
+    height: 1.6rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .search-content {
+    margin: 0;
+    font-size: 0.6rem;
+    padding: 0 0 0 5px;
+  }
+}
+
+@media (max-width: 370px) {
+  .header-section {
+    align-items: center;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  input {
+    width: 7.7rem;
+    padding: 5px 0 5px 8px;
+    font-size: 0.7rem;
   }
 }

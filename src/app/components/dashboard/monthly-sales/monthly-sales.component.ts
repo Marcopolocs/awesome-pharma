@@ -3,11 +3,9 @@ import {
   Component,
   ElementRef,
   Input,
-  OnInit,
   ViewChild,
 } from '@angular/core';
-import { Chart, ChartConfiguration } from 'chart.js';
-import { map, Observable, switchMap } from 'rxjs';
+import { Chart } from 'chart.js';
 import { MonthlySales } from 'src/app/shared/xlsx-data.interface';
 
 @Component({
@@ -15,56 +13,39 @@ import { MonthlySales } from 'src/app/shared/xlsx-data.interface';
   templateUrl: './monthly-sales.component.html',
   styleUrls: ['./monthly-sales.component.css'],
 })
-export class MonthlySalesComponent implements OnInit, AfterViewInit {
-  @Input() soldUnitsPerMonth!: Observable<MonthlySales[]>;
+export class MonthlySalesComponent implements AfterViewInit {
+  @Input() soldUnitsPerMonth!: MonthlySales[];
   @ViewChild('chart')
   private chartRef!: ElementRef;
   private chart!: Chart;
 
-  public barChartLegend = true;
-  public barChartPlugins = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
   ngAfterViewInit() {
-    this.setChart().subscribe();
+    this.defineChartDetails(this.soldUnitsPerMonth);
   }
 
-  setChart() {
-    return this.soldUnitsPerMonth.pipe(
-      switchMap((items) => {
-        return this.defineChartDetails(items);
-      })
-    );
-  }
+  defineChartDetails(items: MonthlySales[]) {
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
-  defineChartDetails(items: any) {
-    return new Observable((obs) => {
-      if (this.chart) {
-        this.chart.destroy();
-      }
-
-      this.chart = new Chart(this.chartRef.nativeElement, {
-        type: 'bar',
-        data: {
-          labels: items.map(
-            (item: any) =>
-              item.month.charAt(0).toUpperCase() + item.month.substring(1)
-          ),
-          datasets: [
-            {
-              label: 'Products sold per month',
-              data: items.map((item: any) => item.totalSalesInMonth),
-              backgroundColor: [
-                'rgb(8, 210, 172, 0.7)',
-                'rgb(51, 195, 229, 0.7)',
-              ],
-            },
-          ],
-        },
-      });
+    this.chart = new Chart(this.chartRef.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: items.map(
+          (item: any) =>
+            item.month.charAt(0).toUpperCase() + item.month.substring(1)
+        ),
+        datasets: [
+          {
+            label: 'Products sold per month',
+            data: items.map((item: MonthlySales) => item.totalSalesInMonth),
+            backgroundColor: [
+              'rgb(8, 210, 172, 0.7)',
+              'rgb(51, 195, 229, 0.7)',
+            ],
+          },
+        ],
+      },
     });
   }
 }

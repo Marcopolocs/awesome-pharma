@@ -8,7 +8,7 @@ import { SalesPerson } from 'src/app/shared/xlsx-data.interface';
   styleUrls: ['./sales-person.component.css'],
 })
 export class SalesPersonComponent implements OnInit {
-  @Input() salesPersonsDetails!: SalesPerson[];
+  @Input() salesPersonsDetails!: SalesPerson[] | null;
   @Output() sortByCondition = new EventEmitter<string>();
 
   displayedColumns: string[] = [
@@ -26,7 +26,9 @@ export class SalesPersonComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sortByCondition.emit('revenue');
+  }
 
   onChangeSortCondition() {
     this.sortByRevenue = !this.sortByRevenue;

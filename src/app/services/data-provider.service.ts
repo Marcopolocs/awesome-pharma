@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, switchMap } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { Order, Product, SalesPerson } from '../shared/xlsx-data.interface';
 
@@ -11,7 +11,7 @@ export class DataProviderService {
   dataFile: string = 'assets/DW_Mini_case.xlsx';
   reader: FileReader = new FileReader();
 
-  salesPersonData$ = new Subject<SalesPerson[]>();
+  salesPersonData$ = new BehaviorSubject<SalesPerson[]>([]);
   ordersData$ = new Subject<Order[]>();
   productsData$ = new Subject<Product[]>();
 

@@ -1,28 +1,27 @@
-<section class="dashboard-container">
+<section
+  class="dashboard-container"
+  *ngIf="aggregatedData$ | async as aggregatedData"
+>
   <div class="title-container">
     <img [src]="image" alt="AwsomePharmaLogo" />
     <div class="report-container">
-      <h1>Sales Report - 2018</h1>
+      <h1>Sales Report</h1>
     </div>
   </div>
-  <ng-container *ngIf="salesPersonDetails$ | async as salesPersons">
-    <app-sales-person
-      class="sales-person-container"
-      [salesPersonsDetails]="salesPersons"
-      (sortByCondition)="setSortCondition($event)"
-    ></app-sales-person>
-  </ng-container>
 
-  <ng-container *ngIf="unitsSoldPerMonth$ as soldUnits">
-    <app-monthly-sales
-      [soldUnitsPerMonth]="soldUnits"
-      class="monthly-sales-container"
-    ></app-monthly-sales>
-  </ng-container>
-  <ng-container *ngIf="customerMonthlyPurchases$ | async as purchases">
-    <app-customer-purchases
-      [customerPurchaseList]="purchases"
-      class="customer-purchase-container"
-    ></app-customer-purchases>
-  </ng-container>
+  <app-sales-person
+    class="sales-person-container"
+    [salesPersonsDetails]="salesPersonDetails$ | async"
+    (sortByCondition)="setSortCondition($event)"
+  ></app-sales-person>
+
+  <app-monthly-sales
+    [soldUnitsPerMonth]="aggregatedData.soldUnitsPerMonth"
+    class="monthly-sales-container"
+  ></app-monthly-sales>
+
+  <app-customer-purchases
+    [customerPurchaseList]="aggregatedData.purchasedNumbersByCustomer"
+    class="customer-purchase-container"
+  ></app-customer-purchases>
 </section>

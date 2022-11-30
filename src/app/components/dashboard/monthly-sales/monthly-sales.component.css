@@ -31,6 +31,7 @@ canvas {
   canvas {
     max-height: 15rem;
   }
+
   h1 {
     font-size: 1.1rem;
   }
@@ -42,6 +43,7 @@ canvas {
     max-height: 17rem;
     padding-bottom: 1rem;
   }
+
   canvas {
     max-height: 15rem;
   }
@@ -49,6 +51,7 @@ canvas {
   .header-section {
     margin-top: 0.5rem;
   }
+
   h1 {
     font-size: 1.1rem;
   }
@@ -58,20 +61,63 @@ canvas {
   .monthly-sales-container {
     min-height: 90%;
   }
+
   .canvas-container {
     display: flex;
-    max-height: 10rem;
+    max-height: 25rem;
   }
+
   canvas {
-    max-height: 10rem;
+    max-height: 25rem;
   }
+
   .canvas-container {
     padding-bottom: 0.5rem;
   }
+
   .header-section {
     margin-top: 0.5rem;
   }
+
   h1 {
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .monthly-sales-container {
+    min-height: 90%;
+  }
+
+  .header-section {
+    margin: 0.5rem 1rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 0.8rem;
+  }
+
+  .canvas-container {
+    display: flex;
+    padding: 0 1rem;
+    min-height: 15rem;
+  }
+
+  canvas {
+    font-size: 0.6rem;
+    min-height: 15rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .canvas-container {
+    display: flex;
+    padding: 0 1rem;
+    min-height: 8rem;
+  }
+
+  canvas {
+    font-size: 0.6rem;
+    height: 8rem;
   }
 }

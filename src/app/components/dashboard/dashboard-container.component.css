@@ -153,3 +153,49 @@ h1 {
     width: 35rem;
   }
 }
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    width: 28rem;
+  }
+
+  img {
+    height: 2.5rem;
+  }
+
+  h1 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    width: 22rem;
+  }
+
+  img {
+    height: 2.5rem;
+  }
+
+  h1 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .dashboard-container {
+    width: 20rem;
+  }
+
+  .title-container {
+    padding: 0.5rem 1rem;
+  }
+
+  img {
+    height: 2.5rem;
+  }
+
+  h1 {
+    font-size: 0.8rem;
+  }
+}
