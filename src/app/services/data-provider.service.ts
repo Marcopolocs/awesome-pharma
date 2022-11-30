@@ -8,7 +8,7 @@ import { Order, Product, SalesPerson } from '../shared/xlsx-data.interface';
   providedIn: 'root',
 })
 export class DataProviderService {
-  dataFile: string = 'assets/DW_Mini_case.xlsx';
+  dataFile: string = 'assets/DW_Mini_cas.xlsx';
   reader: FileReader = new FileReader();
 
   salesPersonData$ = new BehaviorSubject<SalesPerson[]>([]);

@@ -9,7 +9,9 @@ export class ErrorSnackbarService {
 
   showError(message: string): void {
     this.snackBar.open(message, 'X', {
-      duration: 3000,
+      panelClass: 'snackbar-class',
+      verticalPosition: 'top',
+      duration: 96000,
     });
   }
 }

@@ -3,11 +3,24 @@
   --color-one: rgb(8, 210, 172, 0.7);
   --color-two: rgb(51, 195, 229, 0.7);
 }
-html,
+
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-button .mat-mdc-button-touch-target {
+  background-color: var(--color-one);
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  background-color: var(--color-one);
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  padding: 0;
 }
